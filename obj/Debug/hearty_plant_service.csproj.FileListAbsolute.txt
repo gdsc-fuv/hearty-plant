@@ -1,0 +1,12 @@
+E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe.config
+E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe
+E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.pdb
+E:\HP\hearty_plant_service\obj\Debug\hearty_plant_service.csproj.SuggestedBindingRedirects.cache
+E:\HP\hearty_plant_service\obj\Debug\hearty_plant_service.ProjectInstaller.resources
+E:\HP\hearty_plant_service\obj\Debug\hearty_plant_service.csproj.GenerateResource.cache
+E:\HP\hearty_plant_service\obj\Debug\hearty_plant_service.csproj.CoreCompileInputs.cache
+E:\HP\hearty_plant_service\obj\Debug\hearty_plant_service.exe
+E:\HP\hearty_plant_service\obj\Debug\hearty_plant_service.pdb
+E:\HP\hearty_plant_service\obj\Debug\Interop.ACTETHERLib.dll
+E:\HP\hearty_plant_service\obj\Debug\Interop.ActUtlTypeLib.dll
+E:\HP\hearty_plant_service\obj\Debug\hearty_plant_service.csproj.ResolveComReference.cache
