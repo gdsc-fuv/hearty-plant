@@ -1,0 +1,84 @@
+﻿Installing assembly 'E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.InstallLog
+   assemblypath = E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe
+Installing service HeartyPlantService...
+Service HeartyPlantService has been successfully installed.
+Creating EventLog source HeartyPlantService in log Application...
+Committing assembly 'E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.InstallLog
+   assemblypath = E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe
+Uninstalling assembly 'E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.InstallLog
+   assemblypath = E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe
+Removing EventLog source HeartyPlantService.
+Service HeartyPlantService is being removed from the system...
+Service HeartyPlantService was successfully removed from the system.
+Installing assembly 'E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.InstallLog
+   assemblypath = E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe
+Installing service HeartyPlantService...
+Service HeartyPlantService has been successfully installed.
+Creating EventLog source HeartyPlantService in log Application...
+Committing assembly 'E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.InstallLog
+   assemblypath = E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe
+Uninstalling assembly 'E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.InstallLog
+   assemblypath = E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe
+Removing EventLog source HeartyPlantService.
+Service HeartyPlantService is being removed from the system...
+Service HeartyPlantService was successfully removed from the system.
+Installing assembly 'E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.InstallLog
+   assemblypath = E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe
+Installing service HeartyPlantService...
+Service HeartyPlantService has been successfully installed.
+Creating EventLog source HeartyPlantService in log Application...
+Committing assembly 'E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.InstallLog
+   assemblypath = E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe
+Uninstalling assembly 'E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.InstallLog
+   assemblypath = E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe
+Removing EventLog source HeartyPlantService.
+Service HeartyPlantService is being removed from the system...
+Service HeartyPlantService was successfully removed from the system.
+Installing assembly 'E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.InstallLog
+   assemblypath = E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe
+Installing service HeartyPlantService...
+Service HeartyPlantService has been successfully installed.
+Creating EventLog source HeartyPlantService in log Application...
+Committing assembly 'E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.InstallLog
+   assemblypath = E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe
+Uninstalling assembly 'E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.InstallLog
+   assemblypath = E:\HP\hearty_plant_service\bin\Debug\hearty_plant_service.exe
+Removing EventLog source HeartyPlantService.
+Service HeartyPlantService is being removed from the system...
+Service HeartyPlantService was successfully removed from the system.
