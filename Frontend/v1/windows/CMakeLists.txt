@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(v1 LANGUAGES CXX)
+project(ui_design LANGUAGES CXX)
 
-set(BINARY_NAME "v1")
+set(BINARY_NAME "ui_design")
 
 cmake_policy(SET CMP0063 NEW)
 
