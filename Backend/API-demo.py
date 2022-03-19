@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from numpy import record
 from sqlalchemy import create_engine
 import pandas as pd
 import os
@@ -24,11 +25,29 @@ def get_realtime_sensor():
     #Convert the sql format into dictionary and the jsonify it.
     return jsonify({"sensor_list": sensor_dt.to_dict(orient= "records")})
 
+
 #Get device
 @app.route("/v1/getrealtimedevice", methods = ["GET"])
 def get_realtime_device():
     return jsonify({"device_list": device_dt.to_dict(orient= "records")})
 
+#Get 
+@app.route ("/v1/getdatalist", methods = ["GET"])
+def get_datalist():
+    args = request.args
+    sensorid = args.get('sensorid')
+    duration = args.get('duration')
+    return jsonify({str(sensorid) : duration})
+
+
+@app.route ("/v1/setdevice", methods = ["PUT"])
+def put_status():
+    args = request.args
+    deviceid = args.get('deviceid')
+    status = args.get('status')
+    check_status = pd.read_sql_query("UPDATE [dbo].[SENSOR] SET status = %s WHERE id = %s; SELECT status FROM [dbo].[SENSOR] WHERE id = %s" %(status, deviceid, deviceid), con)
+    # = pd.read_sql_query("" %(deviceid), con)
+    return jsonify(check_status.to_dict(orient = 'records'))
 # Get time api, still not working. Need further revision
 #@app.route("/v1/gettime", methods = ["GET"])
 #def get_dkfe():
