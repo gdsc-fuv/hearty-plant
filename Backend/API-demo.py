@@ -1,3 +1,4 @@
+import json
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from numpy import record
@@ -11,10 +12,7 @@ Driver = "ODBC Driver 17 for SQL Server" #SQL driver (check by using OBDC data s
 Database_Con = f"mssql://@{Server}/{Database}?driver={Driver}"
 engine = create_engine(Database_Con)
 con = engine.connect()
-device_dt = pd.read_sql_query("SELECT * FROM [dbo].[DEVICE]", con) #Use panda to read and get data from Query
-sensor_dt = pd.read_sql_query("SELECT * FROM [dbo].[SENSOR]", con)
-device_DATA_dt = pd.read_sql_query("SELECT * FROM [dbo].[DEVICE_DATA]", con)
-sensor_DATA_dt = pd.read_sql_query("SELECT * FROM [dbo].[SENSOR_DATA]", con)
+#Use panda to read and get data from Query
 
 #initialize app
 app = Flask(__name__)
@@ -23,37 +21,38 @@ app = Flask(__name__)
 @app.route("/v1/getrealtimesensor", methods = ["GET"])
 def get_realtime_sensor():
     #Convert the sql format into dictionary and the jsonify it.
+    sensor_dt = pd.read_sql_query("SELECT * FROM [dbo].[SENSOR]", con)
     return jsonify({"sensor_list": sensor_dt.to_dict(orient= "records")})
 
 
 #Get device
 @app.route("/v1/getrealtimedevice", methods = ["GET"])
 def get_realtime_device():
+    device_dt = pd.read_sql_query("SELECT * FROM [dbo].[DEVICE]", con)
     return jsonify({"device_list": device_dt.to_dict(orient= "records")})
 
-#Get 
+#Get data from each date
 @app.route ("/v1/getdatalist", methods = ["GET"])
 def get_datalist():
     args = request.args
     sensorid = args.get('sensorid')
     duration = args.get('duration')
-    return jsonify({str(sensorid) : duration})
+    sensor_name = pd.read_sql_query("SELECT sensor_name FROM [dbo].[SENSOR] WHERE id = %s" %(sensorid), con)
+    if sensor_name.empty:
+        return jsonify("Invalid sensor id. The sensor you're looking for doesn't exist")
+    else:
+        data = pd.read_sql_query("SELECT timeStamp, data FROM [dbo].[SENSOR_DATA] WHERE sensorID = %s AND timeStamp < DATEADD (day, -%s, Getdate())" %(sensorid, duration), con)
+        return jsonify({ "sensor_name": sensor_name.sensor_name[0], "duration": duration , "data" :data.to_dict(orient= "records")})
 
-
+#Set the sensors(?) status
 @app.route ("/v1/setdevice", methods = ["PUT"])
 def put_status():
     args = request.args
     deviceid = args.get('deviceid')
     status = args.get('status')
-    check_status = pd.read_sql_query("UPDATE [dbo].[SENSOR] SET status = %s WHERE id = %s; SELECT status FROM [dbo].[SENSOR] WHERE id = %s" %(status, deviceid, deviceid), con)
-    # = pd.read_sql_query("" %(deviceid), con)
+    con.execute("UPDATE [dbo].[SENSOR] SET status = %s WHERE id = %s" %(status, deviceid))
+    check_status = pd.read_sql_query("SELECT status FROM [dbo].[SENSOR] WHERE id = %s" %(deviceid), con)
     return jsonify(check_status.to_dict(orient = 'records'))
-# Get time api, still not working. Need further revision
-#@app.route("/v1/gettime", methods = ["GET"])
-#def get_dkfe():
-#    dt = pd.read_sql_query("SELECT timeStamp from [dbo].[DEVICE_DATA]", con)
-#    return jsonify({"time":dt.to_dict("records")})
-
 
 #Run sever
 if __name__ =="__main__":
