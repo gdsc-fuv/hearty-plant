@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 // import 'dart:math' as math;
 
-class DevicesWidgets_1 extends StatefulWidget {
+class DevicesWidgets_2 extends StatefulWidget {
   // Device device;
   double size;
-  DevicesWidgets_1({this.size: 100}) {}
+  DevicesWidgets_2({this.size: 100}) {}
   @override
   _MyHomePageState createState() {
     return _MyHomePageState(size = size);
   }
 }
 
-class _MyHomePageState extends State<DevicesWidgets_1> {
+class _MyHomePageState extends State<DevicesWidgets_2> {
   bool state = false;
   double size;
   _MyHomePageState(this.size) {}
@@ -39,13 +39,13 @@ class _MyHomePageState extends State<DevicesWidgets_1> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Image.asset(
-                    'assets/images/valve.png',
-                    scale: 120 / this.size,
+                    'assets/images/pump.png',
+                    scale: 75 / this.size,
                     alignment: Alignment.topRight,
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(this.size * 0.4, this.size * 0.2,
+                  padding: EdgeInsets.fromLTRB(this.size * 0.6, this.size * 0.2,
                       this.size * 0.2, this.size * 0.2),
                   child: CupertinoSwitch(
                     value: state,
@@ -59,7 +59,7 @@ class _MyHomePageState extends State<DevicesWidgets_1> {
                 )
               ]),
               Text(
-                "Solenoid valve 1",
+                "Main pump",
                 style: TextStyle(
                     fontSize: this.size * 0.2,
                     fontWeight: FontWeight.bold,

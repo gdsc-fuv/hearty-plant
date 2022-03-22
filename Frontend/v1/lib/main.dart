@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:ui_design/widgets/device_widgets.dart';
+import 'package:ui_design/widgets/device_widgets_2.dart';
 
 // import 'GeneratedToggleswitchWidget1.dart';
 // import '/GeneratedMdipipevalveWidget.dart';
@@ -34,8 +35,9 @@ class MyApp extends StatelessWidget {
             appBar: AppBar(),
             body: Padding(
                 padding: EdgeInsets.all(10.0),
-                child: Row(children: [
-                  DevicesWidgets(),
+                child: Column(children: [
+                  DevicesWidgets_1(),
+                  DevicesWidgets_2(),
                 ]))));
   }
 }
