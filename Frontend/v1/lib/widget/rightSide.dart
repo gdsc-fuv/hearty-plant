@@ -150,36 +150,62 @@ class GrownArea extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         rightHeading("SET DAY GROWN"),
-        // ElevatedButton.icon(
-        //     onPressed: () {},
-        //     icon: Icon(Icons.lock_clock),
-        //     label: Text("30 Days")),
         SizedBox(
           height: SizeConfig.blockSizeVertical * 2,
         ),
         Container(
           height: 46,
-          width: 315,
+          width: 330,
+          padding: const EdgeInsets.only(
+            left: 15,
+            right: 15,
+            top: 11,
+            bottom: 13,
+          ),
           decoration: BoxDecoration(
-            color: AppColors.primaryBg,
-            borderRadius: BorderRadius.circular(6),
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Color(0x28274c77),
+                blurRadius: 10.11,
+                offset: Offset(0, 5.05),
+              ),
+            ],
           ),
           child: Row(
             children: [
-              Icon(Icons.lock_clock),
+              Image.asset("assets/clock.png"),
               SizedBox(
                 width: 3,
               ),
-              Text("30 DAYS"),
+              Text("30 DAYS",
+                  style: GoogleFonts.lato(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0XFF014519))),
               SizedBox(width: 3),
-              Text("(DEFAULT)")
+              Spacer(),
+              Text(
+                "(DEFAULT)",
+                style: GoogleFonts.lato(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0XFFB1B3BE)),
+              ),
             ],
           ),
         ),
         SizedBox(
-          height: SizeConfig.blockSizeVertical,
+          height: SizeConfig.blockSizeVertical * 2,
         ),
-        Text("15 Days left to harvest"),
+        Text(
+          "15 Days left to harvest",
+          style: GoogleFonts.lato(
+              fontSize: 30,
+              fontWeight: FontWeight.w900,
+              color: Color(0xff004519)),
+        ),
       ],
     );
   }
@@ -194,6 +220,87 @@ class TimeSettingArea extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         rightHeading("SET DAY TIME"),
+        SizedBox(
+          height: SizeConfig.blockSizeVertical * 2,
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: SizeConfig.blockSizeVertical * 2,
+            ),
+            Container(
+                height: 46,
+                width: 120,
+                padding: const EdgeInsets.only(
+                  left: 15,
+                  right: 15,
+                  top: 11,
+                  bottom: 13,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(0x28274c77),
+                      blurRadius: 10.11,
+                      offset: Offset(0, 5.05),
+                    ),
+                  ],
+                ),
+                child: Row(children: [
+                  Image.asset("assets/clock.png"),
+                  SizedBox(
+                    width: 3,
+                  ),
+                  Text("6:00AM",
+                      style: GoogleFonts.lato(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0XFF014519))),
+                ])),
+
+            SizedBox(width: 10),
+            //rightHeading("to"),
+            SizedBox(width: 10),
+            Container(
+              height: 46,
+              width: 120,
+              padding: const EdgeInsets.only(
+                left: 15,
+                right: 15,
+                top: 11,
+                bottom: 13,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0x28274c77),
+                    blurRadius: 10.11,
+                    offset: Offset(0, 5.05),
+                  ),
+                ],
+              ),
+              child: Row(
+                children: [
+                  Image.asset("assets/clock.png"),
+                  SizedBox(
+                    width: 3,
+                  ),
+                  Text("6:00PM",
+                      style: GoogleFonts.lato(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0XFF014519),
+                      )),
+                ],
+              ),
+            ),
+          ],
+        ),
       ],
     );
   }

@@ -10,7 +10,7 @@ class rightHeading extends StatelessWidget {
     return Text(
       text,
       style: GoogleFonts.lato(
-          color: Color(0xFF4EBE76), fontSize: 16, fontWeight: FontWeight.bold),
+          color: Color(0xFF4EBE76), fontSize: 20, fontWeight: FontWeight.bold),
     );
   }
 }

@@ -11,6 +11,7 @@ import 'package:responsive_dashboard/style/style.dart';
 import 'package:responsive_dashboard/widget/sensorWidget.dart';
 import 'package:responsive_dashboard/widget/test.dart';
 
+import 'helpers/rightSideHeading.dart';
 import 'model/sensor.dart';
 
 // ignore: must_be_immutable
@@ -69,15 +70,12 @@ class Dashboard extends StatelessWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                PrimaryText(
-                                  text: 'SENSORS',
-                                  size: 20,
-                                  fontWeight: FontWeight.w800,
-                                ),
                                 // PrimaryText(
-                                //     text: 'Data',
-                                //     size: 30,
-                                //     fontWeight: FontWeight.w800),
+                                //   text: 'SENSORS',
+                                //   size: 20,
+                                //   fontWeight: FontWeight.w800,
+                                // ),
+                                rightHeading("SENSORS"),
                               ],
                             ),
                             // PrimaryText(
@@ -149,6 +147,48 @@ class Dashboard extends StatelessWidget {
                                 ),
                                 size: 200,
                               ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: SizeConfig.blockSizeVertical * 3,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                rightHeading("DEVICES"),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: SizeConfig.blockSizeVertical * 4,
+                        ),
+                        SizedBox(
+                          width: SizeConfig.screenWidth,
+                          child: Wrap(
+                            spacing: 20,
+                            runSpacing: 20,
+                            alignment: WrapAlignment.spaceAround,
+                            children: [
+                              DevicesWidgets_1("Main pump", "assets/pump.png"),
+                              DevicesWidgets_1(
+                                  "Solenoid valve 1", "assets/valve.png"),
+                              DevicesWidgets_1(
+                                  "Solenoid valve 2", "assets/valve.png"),
+                              DevicesWidgets_1(
+                                  "Solenoid valve 3", "assets/valve.png"),
+                              DevicesWidgets_1("Main Pump", "assets/pump.png"),
+                              DevicesWidgets_1(
+                                  "Solenoid valve 1", "assets/valve.png"),
+                              DevicesWidgets_1(
+                                  "Solenoid valve 2", "assets/valve.png"),
+                              DevicesWidgets_1(
+                                  "Solenoid valve 3", "assets/valve.png"),
                             ],
                           ),
                         ),
