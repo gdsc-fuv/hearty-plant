@@ -1,18 +1,42 @@
 // ignore_for_file: invalid_required_positional_param, must_be_immutable, unnecessary_this
 
 import 'package:flutter/material.dart';
-import 'package:v1/models/sensors.dart';
+import 'package:v1/models/model.dart';
+import 'package:v1/models/sensor.dart';
 
-class SensorWidgets extends StatelessWidget {
-  Sensor sensorObject;
+import '../apicall/apicall.dart';
+
+class SensorWidgets extends StatefulWidget {
   double size;
-  SensorWidgets(@required this.sensorObject, {this.size: 400, Key? key})
+  String name;
+  SensorWidgets({required this.name, this.size: 200, Key? key})
       : super(key: key);
+
+  @override
+  State<SensorWidgets> createState() =>
+      _SensorWidgetsState(name = name, size = size);
+}
+
+class _SensorWidgetsState extends State<SensorWidgets> {
+  String name;
+  late Sensor sensorObject;
+  double size;
+  List<Sensor> data = [];
+  _SensorWidgetsState(this.name, this.size);
+  late Future<Sensor> futureSensor;
+
+  @override
+  void initState() {
+    super.initState();
+    late Future<Sensor> futureSensor;
+    Future<List> data = fetchSensor();
+    int a = 10;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: this.size * 5 / 6,
+      height: this.size * 2 / 3,
       width: this.size,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -27,42 +51,20 @@ class SensorWidgets extends StatelessWidget {
       ),
       //khúc này bắt đầu vô code cái widget
       child: Column(
-        //mainAxisAlignment: MainAxisAlignment.start,
-        //crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          //Row(
-          //children: [
-          // cái đầu của cái widget
-          //Expanded(
-          //child:
           Padding(
-            padding: EdgeInsets.all(size / 10),
+            padding:
+                EdgeInsets.fromLTRB(size / 15, size / 10, size / 15, size / 20),
             child: Text(sensorObject.sensorName, style: title()),
-            // ),
           ),
-          // ignore: prefer_const_constructors
-          // Padding(
-          //   padding: EdgeInsets.all((this.width > this.height)
-          //       ? (this.height / 9)
-          //       : (this.width / 9)),
-          //   // child: const Icon(Icons.arrow_forward_ios_outlined),
-          // )
-          //], //children
-          //),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   crossAxisAlignment: CrossAxisAlignment.center,
-          //   children: [
-
-          //crossAxisAlignment: CrossAxisAlignment.center,
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              sensorObject.getImage(scale: this.size / 100),
+              sensorObject.getImage(scale: 400 / this.size),
               Padding(
-                padding: EdgeInsets.all(size / 20),
+                padding: EdgeInsets.all(size / 40),
                 child: Text(
-                  sensorObject.getStatus(),
+                  sensorObject.getData(),
                   style: statusString(),
                 ),
               ),
@@ -70,20 +72,8 @@ class SensorWidgets extends StatelessWidget {
                 sensorObject.getUnit(),
                 style: unitString(),
               )
-              // Padding(
-              //     padding:
-              //         EdgeInsets.fromLTRB(size / 3, size / 3, size / 3, 1)),
-              // Positioned(
-              //   left: size / 2.5,
-              // child: sensorObject.icon(
-              //   size: size / 3,
-              //   color: Color.fromARGB(255, 127, 236, 167),
-
-              //),
             ],
           ),
-          // ],
-          //),
         ],
       ),
     );
@@ -117,3 +107,39 @@ class SensorWidgets extends StatelessWidget {
     );
   }
 }
+// class SensorWidgets extends StatelessWidget {
+//   Sensor sensorObject;
+//   double size;
+//   SensorWidgets(@required this.sensorObject, {this.size: 400, Key? key})
+//       : super(key: key);
+
+//   @override
+  
+// }
+// class SensorDisplay extends StatefulWidget {
+//   const SensorDisplay({ Key? key }) : super(key: key);
+
+//   @override
+//   State<SensorDisplay> createState() => _SensorDisplayState();
+// }
+
+// class _SensorDisplayState extends State<SensorDisplay> {
+//   Future<List> futureSensor;
+//   @override
+//   void initState() {
+//     // TODO: implement initState
+//     super.initState();
+    
+//     futureSensor = fetchSensor();
+//   }
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       child:FutureBuilder<Sensor>(future: futureSensor.get(0),
+//             builder: (context, snapshot) {
+//               if 
+//             }),
+      
+//     );
+//   }
+// }

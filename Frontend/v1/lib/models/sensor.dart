@@ -1,19 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:v1/apicall/apicall.dart';
+import 'package:http/http.dart' as http;
+import 'package:v1/widgets/sensor_widgets.dart';
 
 class Sensor {
-  int sensorId;
   String sensorName;
+  int sensorId;
   double? status;
-  final SENSORLIST = <String>["pH", "TDS", "Light", "Temperature", "Huminity"];
+  int data;
+  final SENSORLIST = <String>["pH", "TDS", "Light", "Temperature", "Humidity"];
   final UNIT = <String>["", "ppm", "lux", "°C", "%"];
   int index = 0;
-
-  Sensor(@required this.sensorId, @required this.sensorName, this.status) {
+  // varibales for UI
+  Sensor(
+      {required this.sensorName,
+      required this.sensorId,
+      this.status,
+      required this.data}) {
     this.index = SENSORLIST.indexOf(sensorName);
   }
-  String getStatus() {
-    return (this.status != null) ? this.status.toString() : "N/A";
+  String getData() {
+    return data.toString();
   }
 
   String getUnit() {
@@ -27,5 +35,3 @@ class Sensor {
     );
   }
 }
-
-Sensor pHSensor = Sensor(1, "pH", 1);

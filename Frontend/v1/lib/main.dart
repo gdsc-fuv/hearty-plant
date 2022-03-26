@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:v1/apicall/apicall.dart';
+import 'package:v1/models/model.dart';
+import 'package:v1/widgets/device_widgets.dart';
 import 'widgets/sensor_widgets.dart';
-import './models/sensors.dart';
+import 'models/sensor.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -34,13 +40,11 @@ class MyApp extends StatelessWidget {
           child: Row(
             children: [
               SensorWidgets(
-                Sensor(
-                  32,
-                  'Light',
-                  43,
-                ),
+                name: "Temperature",
                 size: 200,
-              )
+              ),
+              Padding(padding: EdgeInsets.all(20)),
+              DevicesWidgets(),
             ],
           ),
         ),
