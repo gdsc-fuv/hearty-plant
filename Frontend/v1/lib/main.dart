@@ -40,7 +40,7 @@ class _MyAppState extends State<MyApp> {
           child: Row(
             children: [
               SensorWidgets(
-                name: "Temperature",
+                name: "Light",
                 size: 200,
               ),
               Padding(padding: EdgeInsets.all(20)),

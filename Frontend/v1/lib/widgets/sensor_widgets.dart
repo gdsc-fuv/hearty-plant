@@ -19,9 +19,11 @@ class SensorWidgets extends StatefulWidget {
 
 class _SensorWidgetsState extends State<SensorWidgets> {
   String name;
-  late Sensor sensorObject;
+  late Sensor sensorObject =
+      Sensor(sensorName: "Temperature", sensorId: 10, data: 20);
   double size;
-  List<Sensor> data = [];
+  // List<Sensor> data = [];
+  late Future<List> data;
   _SensorWidgetsState(this.name, this.size);
   late Future<Sensor> futureSensor;
 
@@ -29,7 +31,10 @@ class _SensorWidgetsState extends State<SensorWidgets> {
   void initState() {
     super.initState();
     late Future<Sensor> futureSensor;
-    Future<List> data = fetchSensor();
+
+    data = fetchSensor();
+    // Duration three = Duration(seconds: 3);
+    // Future.delayed(three, () => null);
     int a = 10;
   }
 
@@ -50,32 +55,60 @@ class _SensorWidgetsState extends State<SensorWidgets> {
         ],
       ),
       //khúc này bắt đầu vô code cái widget
-      child: Column(
-        children: [
-          Padding(
-            padding:
-                EdgeInsets.fromLTRB(size / 15, size / 10, size / 15, size / 20),
-            child: Text(sensorObject.sensorName, style: title()),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              sensorObject.getImage(scale: 400 / this.size),
-              Padding(
-                padding: EdgeInsets.all(size / 40),
-                child: Text(
-                  sensorObject.getData(),
-                  style: statusString(),
-                ),
-              ),
-              Text(
-                sensorObject.getUnit(),
-                style: unitString(),
-              )
-            ],
-          ),
-        ],
-      ),
+      child: FutureBuilder<List>(
+          future: data,
+          builder: (context, snapshot) {
+            Column child = Column();
+            if (snapshot.hasData) {
+              for (Sensor item in snapshot.data!) {
+                if (item.sensorName == this.name) {
+                  // this.sensorObject = item;
+                  Sensor thisItem = item;
+                  child = Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(
+                            size / 15, size / 10, size / 15, size / 20),
+                        child: Text(thisItem.sensorName, style: title()),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          thisItem.getImage(scale: 400 / this.size),
+                          Padding(
+                            padding: EdgeInsets.all(size / 40),
+                            child: Text(
+                              thisItem.getData(),
+                              style: statusString(),
+                            ),
+                          ),
+                          Text(
+                            thisItem.getUnit(),
+                            style: unitString(),
+                          )
+                        ],
+                      ),
+                    ],
+                  );
+                }
+              }
+            } else {
+              child = Column(
+                children: [
+                  SizedBox(
+                    child: CircularProgressIndicator(),
+                    width: 60,
+                    height: 60,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 16),
+                    child: Text('Awaiting result...'),
+                  )
+                ],
+              );
+            }
+            return child;
+          }),
     );
   }
 

@@ -9,6 +9,8 @@ Future<List> fetchSensor() async {
   List<Sensor> data = [];
   final response =
       await http.get(Uri.parse('https://gdsc-fuv.github.io/sensor.json'));
+  Duration three = Duration(seconds: 3);
+  Future.delayed(three, () => null);
   var a = jsonDecode(response.body);
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
