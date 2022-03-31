@@ -7,7 +7,7 @@ import pandas as pd
 import os
 
 Server = "DESKTOP-FAT73BL\SQLEXPRESS" #Sever name
-Database = "SQLSample_data" #Database name
+Database = "Hearty_Plant" #Database name
 Driver = "ODBC Driver 17 for SQL Server" #SQL driver (check by using OBDC data source app)
 Database_Con = f"mssql://@{Server}/{Database}?driver={Driver}"
 engine = create_engine(Database_Con)
