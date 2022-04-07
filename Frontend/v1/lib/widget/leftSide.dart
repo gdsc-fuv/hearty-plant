@@ -5,7 +5,7 @@ import 'package:responsive_dashboard/style/colors.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

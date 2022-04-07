@@ -1,23 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../apicall/apiCall.dart';
+import 'package:http/http.dart' as http;
+import '../widget/sensorWidget.dart';
 
 class Sensor {
-  int sensorId;
   String sensorName;
-  double status;
-  final SENSORLIST = <String>["pH", "TDS", "Light", "Temperature", "Huminity"];
+  int sensorId;
+  double? status;
+  double data;
+  final SENSORLIST = <String>["pH", "TDS", "Light", "Temperature", "Humidity"];
   final UNIT = <String>["", "ppm", "lux", "°C", "%"];
   int index = 0;
-
-  Sensor(@required this.sensorId, @required this.sensorName, this.status) {
+  // varibales for UI
+  Sensor(
+      {required this.sensorName,
+      required this.sensorId,
+      this.status,
+      required this.data}) {
     this.index = SENSORLIST.indexOf(sensorName);
   }
-  String getStatus() {
-    return (this.status != null) ? this.status.toString() : "N/A";
-  }
-
-  void setStatus(double status) {
-    this.status = status;
+  String getData() {
+    return data.toString();
   }
 
   String getUnit() {

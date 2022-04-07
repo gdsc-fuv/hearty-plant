@@ -1,23 +1,60 @@
 // ignore_for_file: invalid_required_positional_param, must_be_immutable, unnecessary_this
 
 import 'package:flutter/material.dart';
-
 import '../model/sensor.dart';
 
-class SensorWidgets extends StatelessWidget {
-  Sensor sensorObject;
+import '../apicall/apicall.dart';
+
+class SensorWidgets extends StatefulWidget {
   double size;
-  SensorWidgets(@required this.sensorObject, {this.size: 400, Key key})
+  String name;
+  Future<List> data = fetchSensor();
+  SensorWidgets(
+      {required this.name, this.size: 200, required this.data, Key? key})
       : super(key: key);
 
   @override
+  State<SensorWidgets> createState() =>
+      _SensorWidgetsState(name = name, size = size, data = data);
+
+  void setData(Future<List> data) {
+    this.data = data;
+  }
+}
+
+class _SensorWidgetsState extends State<SensorWidgets> {
+  String name;
+  late Sensor sensorObject;
+  double size;
+  // List<Sensor> data = [];
+  late Future<List> data;
+  _SensorWidgetsState(this.name, this.size, this.data);
+  late Future<Sensor> futureSensor;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Duration three = Duration(seconds: 3);
+    // Future.delayed(three, () => null);
+    int a = 10;
+  }
+
+  // Setter
+  void setData(Future<List> data) {
+    this.data = data;
+  }
+
+  @override
   Widget build(BuildContext context) {
+    late Future<Sensor> futureSensor;
+    data = fetchSensor();
     return Container(
       height: this.size * 2 / 3,
       width: this.size,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
             color: Color(0x28274c77),
@@ -27,67 +64,60 @@ class SensorWidgets extends StatelessWidget {
         ],
       ),
       //khúc này bắt đầu vô code cái widget
-      child: Column(
-        //mainAxisAlignment: MainAxisAlignment.start,
-        //crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          //Row(
-          //children: [
-          // cái đầu của cái widget
-          //Expanded(
-          //child:
-          Padding(
-            padding:
-                EdgeInsets.fromLTRB(size / 15, size / 10, size / 15, size / 20),
-            child: Text(sensorObject.sensorName, style: title()),
-            // ),
-          ),
-          // ignore: prefer_const_constructors
-          // Padding(
-          //   padding: EdgeInsets.all((this.width > this.height)
-          //       ? (this.height / 9)
-          //       : (this.width / 9)),
-          //   // child: const Icon(Icons.arrow_forward_ios_outlined),
-          // )
-          //], //children
-          //),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   crossAxisAlignment: CrossAxisAlignment.center,
-          //   children: [
-
-          //crossAxisAlignment: CrossAxisAlignment.center,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              sensorObject.getImage(scale: 400 / this.size),
-              Padding(
-                padding: EdgeInsets.all(size / 40),
-                child: Text(
-                  sensorObject.getStatus(),
-                  style: statusString(),
-                ),
-              ),
-              Text(
-                sensorObject.getUnit(),
-                style: unitString(),
-              )
-              // Padding(
-              //     padding:
-              //         EdgeInsets.fromLTRB(size / 3, size / 3, size / 3, 1)),
-              // Positioned(
-              //   left: size / 2.5,
-              // child: sensorObject.icon(
-              //   size: size / 3,
-              //   color: Color.fromARGB(255, 127, 236, 167),
-
-              //),
-            ],
-          ),
-          // ],
-          //),
-        ],
-      ),
+      child: FutureBuilder<List>(
+          future: data,
+          builder: (context, snapshot) {
+            Column child = Column();
+            if (snapshot.hasData) {
+              for (Sensor item in snapshot.data!) {
+                if (item.sensorName == this.name) {
+                  // this.sensorObject = item;
+                  Sensor thisItem = item;
+                  child = Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(
+                            size / 15, size / 10, size / 15, size / 20),
+                        child: Text(thisItem.sensorName, style: title()),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          thisItem.getImage(scale: 400 / this.size),
+                          Padding(
+                            padding: EdgeInsets.all(size / 40),
+                            child: Text(
+                              thisItem.getData(),
+                              style: statusString(),
+                            ),
+                          ),
+                          Text(
+                            thisItem.getUnit(),
+                            style: unitString(),
+                          )
+                        ],
+                      ),
+                    ],
+                  );
+                }
+              }
+            } else {
+              child = Column(
+                children: [
+                  SizedBox(
+                    child: CircularProgressIndicator(),
+                    width: 60,
+                    height: 60,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 16),
+                    child: Text('Awaiting result...'),
+                  )
+                ],
+              );
+            }
+            return child;
+          }),
     );
   }
 
@@ -119,3 +149,39 @@ class SensorWidgets extends StatelessWidget {
     );
   }
 }
+// class SensorWidgets extends StatelessWidget {
+//   Sensor sensorObject;
+//   double size;
+//   SensorWidgets(@required this.sensorObject, {this.size: 400, Key? key})
+//       : super(key: key);
+
+//   @override
+  
+// }
+// class SensorDisplay extends StatefulWidget {
+//   const SensorDisplay({ Key? key }) : super(key: key);
+
+//   @override
+//   State<SensorDisplay> createState() => _SensorDisplayState();
+// }
+
+// class _SensorDisplayState extends State<SensorDisplay> {
+//   Future<List> futureSensor;
+//   @override
+//   void initState() {
+//     // TODO: implement initState
+//     super.initState();
+    
+//     futureSensor = fetchSensor();
+//   }
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       child:FutureBuilder<Sensor>(future: futureSensor.get(0),
+//             builder: (context, snapshot) {
+//               if 
+//             }),
+      
+//     );
+//   }
+// }

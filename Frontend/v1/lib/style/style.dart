@@ -9,7 +9,7 @@ class PrimaryText extends StatelessWidget {
   final double height;
 
   const PrimaryText({
-    this.text,
+    this.text: "",
     this.fontWeight: FontWeight.w400,
     this.color: AppColors.primaryGreen,
     this.size: 20,

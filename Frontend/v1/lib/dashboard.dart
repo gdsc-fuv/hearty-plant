@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_dashboard/apicall/apiCall.dart';
 import 'package:responsive_dashboard/widget/appBar.dart';
 import 'package:responsive_dashboard/widget/deviceWidget.dart';
 import 'package:responsive_dashboard/widget/header.dart';
@@ -13,15 +14,27 @@ import 'package:responsive_dashboard/widget/test.dart';
 
 import 'helpers/rightSideHeading.dart';
 import 'model/sensor.dart';
+import 'dart:async';
 
 // ignore: must_be_immutable
 class Dashboard extends StatelessWidget {
   GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
-  Sensor pHSensor = Sensor(1, "pH", 1);
+  final String pHSensor = "pH";
+  final String temperatureSensor = "Temperature";
+  final String tdsSensor = "TDS";
+  final String lightSensor = "Light";
+  final String humiditySensor = "Humidity";
+  Future<List> data = fetchSensor(); // data
+
+  void setData() {
+    this.data = fetchSensor();
+  }
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    Duration fiveSec = Duration(seconds: 5);
+    // Timer.periodic(fiveSec, ((timer) => setData()));
     return Scaffold(
       key: _drawerKey,
       drawer: SizedBox(width: 100, child: SideMenu()),
@@ -31,7 +44,7 @@ class Dashboard extends StatelessWidget {
               backgroundColor: AppColors.white,
               leading: IconButton(
                   onPressed: () {
-                    _drawerKey.currentState.openDrawer();
+                    _drawerKey.currentState!.openDrawer();
                   },
                   icon: Icon(Icons.menu, color: AppColors.black)),
               actions: [
@@ -101,51 +114,32 @@ class Dashboard extends StatelessWidget {
                               // SensorWidget(label: 'Light', data: '7500'),
                               // SensorWidget(label: 'Temperature', data: '27C'),
                               SensorWidgets(
-                                pHSensor,
+                                name: pHSensor,
                                 size: 200,
+                                data: data,
                               ),
                               SensorWidgets(
-                                Sensor(
-                                  2,
-                                  'pH',
-                                  43,
-                                ),
+                                name: temperatureSensor,
                                 size: 200,
+                                data: data,
                               ),
                               SensorWidgets(
-                                Sensor(
-                                  32,
-                                  'TDS',
-                                  43,
-                                ),
+                                name: lightSensor,
                                 size: 200,
+                                data: data,
                               ),
                               // SizedBox(
                               //   height: SizeConfig.blockSizeVertical * 4,
                               // ),
                               SensorWidgets(
-                                Sensor(
-                                  32,
-                                  'TDS',
-                                  43,
-                                ),
+                                name: humiditySensor,
                                 size: 200,
+                                data: data,
                               ),
                               SensorWidgets(
-                                Sensor(
-                                  32,
-                                  'Temperature',
-                                  43,
-                                ),
+                                name: tdsSensor,
                                 size: 200,
-                              ),
-                              SensorWidgets(
-                                Sensor(
-                                  32,
-                                  'Temperature',
-                                  43,
-                                ),
-                                size: 200,
+                                data: data,
                               ),
                             ],
                           ),

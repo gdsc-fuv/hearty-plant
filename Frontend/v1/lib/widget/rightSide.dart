@@ -8,7 +8,7 @@ import '../style/colors.dart';
 
 class rightSide extends StatelessWidget {
   const rightSide({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -35,7 +35,7 @@ class rightSide extends StatelessWidget {
 }
 
 class VegetableArea extends StatelessWidget {
-  const VegetableArea({Key key}) : super(key: key);
+  const VegetableArea({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +74,7 @@ class VegetableArea extends StatelessWidget {
 }
 
 class ModeArea extends StatelessWidget {
-  const ModeArea({Key key}) : super(key: key);
+  const ModeArea({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +142,7 @@ class modeContainer extends StatelessWidget {
 }
 
 class GrownArea extends StatelessWidget {
-  const GrownArea({Key key}) : super(key: key);
+  const GrownArea({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -212,7 +212,7 @@ class GrownArea extends StatelessWidget {
 }
 
 class TimeSettingArea extends StatelessWidget {
-  const TimeSettingArea({Key key}) : super(key: key);
+  const TimeSettingArea({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -9,7 +9,7 @@ class SensorWidget extends StatelessWidget {
   final String label;
   final String data;
 
-  SensorWidget({this.label, this.data, this.icon});
+  SensorWidget({required this.label, required this.data, required this.icon});
 
   @override
   Widget build(BuildContext context) {

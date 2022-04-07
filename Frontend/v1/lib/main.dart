@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_dashboard/dashboard.dart';
 import 'package:responsive_dashboard/style/colors.dart';
+import 'dart:async';
 
 void main() {
+  // Timer.periodic(Duration(seconds: 5), (timer) => runApp(MyApp()));
   runApp(MyApp());
 }
 
