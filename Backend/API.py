@@ -1,3 +1,4 @@
+from cmath import log
 import json
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
@@ -6,8 +7,8 @@ from sqlalchemy import create_engine
 import pandas as pd
 import os
 
-Server = "DESKTOP-FAT73BL\SQLEXPRESS" #Sever name
-Database = "Hearty_Plant" #Database name
+Server = "DESKTOP-JBJPAF9\SQLEXPRESS"#Sever name
+Database = "HEARTY_PLANT" #Database name
 Driver = "ODBC Driver 17 for SQL Server" #SQL driver (check by using OBDC data source app)
 Database_Con = f"mssql://@{Server}/{Database}?driver={Driver}"
 engine = create_engine(Database_Con)
@@ -37,12 +38,14 @@ def get_datalist():
     args = request.args
     sensorid = args.get('sensorid')
     duration = args.get('duration')
-    sensor_name = pd.read_sql_query("SELECT sensor_name FROM [dbo].[SENSOR] WHERE id = %s" %(sensorid), con)
-    if sensor_name.empty:
+    sensor = pd.read_sql_query("SELECT sensorName FROM [dbo].[SENSOR] WHERE sensorID = %s" %(sensorid), con)
+
+    if sensor.empty:
         return jsonify("Invalid sensor id. The sensor you're looking for doesn't exist")
     else:
         data = pd.read_sql_query("SELECT timeStamp, data FROM [dbo].[SENSOR_DATA] WHERE sensorID = %s AND timeStamp > DATEADD (day, -%s, Getdate())" %(sensorid, duration), con)
-        return jsonify({ "sensor_name": sensor_name.sensor_name[0], "duration": duration , "data" :data.to_dict(orient= "records")})
+        print(sensor)
+        return jsonify({ "sensor_name": sensor.sensorName[0], "duration": duration , "data" :data.to_dict(orient= "records")})
 
 #Set the device status
 @app.route ("/v1/setdevice", methods = ["PUT"])
