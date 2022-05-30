@@ -38,14 +38,14 @@ def get_datalist():
     args = request.args
     sensorid = args.get('sensorid')
     duration = args.get('duration')
-    sensor = pd.read_sql_query("SELECT sensorName FROM [dbo].[SENSOR] WHERE sensorID = %s" %(sensorid), con)
+    sensor = pd.read_sql_query("SELECT * FROM [dbo].[SENSOR] WHERE sensorID = %s" %(sensorid), con)
 
     if sensor.empty:
         return jsonify("Invalid sensor id. The sensor you're looking for doesn't exist")
     else:
         data = pd.read_sql_query("SELECT timeStamp, data FROM [dbo].[SENSOR_DATA] WHERE sensorID = %s AND timeStamp > DATEADD (day, -%s, Getdate())" %(sensorid, duration), con)
         print(sensor)
-        return jsonify({ "sensor_name": sensor.sensorName[0], "duration": duration , "data" :data.to_dict(orient= "records")})
+        return jsonify({ "sensor_id": sensorid, "sensor_name": sensor.sensorName[0], "duration": duration , "data" :data.to_dict(orient= "records")})
 
 #Set the device status
 @app.route ("/v1/setdevice", methods = ["PUT"])
