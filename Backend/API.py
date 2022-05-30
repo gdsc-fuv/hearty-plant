@@ -53,8 +53,8 @@ def put_device_status():
     args = request.args
     deviceid = args.get('deviceid')
     status = args.get('status')
-    con.execute("UPDATE [dbo].[DEVICE] SET status = %s WHERE id = %s" %(status, deviceid))
-    check_status = pd.read_sql_query("SELECT status FROM [dbo].[DEVICE] WHERE id = %s" %(deviceid), con)
+    con.execute("UPDATE [dbo].[DEVICE] SET status = %s WHERE deviceID = %s" %(status, deviceid))
+    check_status = pd.read_sql_query("SELECT status FROM [dbo].[DEVICE] WHERE deviceID = %s" %(deviceid), con)
     return jsonify(check_status.to_dict(orient = 'records'))
 
 #Set the sensor status
@@ -63,8 +63,8 @@ def put_sensor_status():
     args = request.args
     sensorid = args.get('sensorid')
     status = args.get('status')
-    con.execute("UPDATE [dbo].[SENSOR] SET status = %s WHERE id = %s" %(status, sensorid))
-    check_status = pd.read_sql_query("SELECT status FROM [dbo].[SENSOR] WHERE id = %s" %(sensorid), con)
+    con.execute("UPDATE [dbo].[SENSOR] SET status = %s WHERE sensorID = %s" %(status, sensorid))
+    check_status = pd.read_sql_query("SELECT status FROM [dbo].[SENSOR] WHERE sensorID = %s" %(sensorid), con)
     return jsonify(check_status.to_dict(orient = 'records'))
 
 #Run sever
