@@ -8,7 +8,9 @@ class Sensor {
   String sensorName;
   int sensorId;
   double? status;
-  int data;
+  //Cái này thành string để dùng data của web, 
+  //khi dùng data của database clb thì sẽ đổi sang int
+  String data;
   final SENSORLIST = <String>["pH", "TDS", "Light", "Temperature", "Humidity"];
   final UNIT = <String>["", "ppm", "lux", "°C", "%"];
   int index = 0;

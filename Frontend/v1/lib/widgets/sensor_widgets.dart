@@ -20,7 +20,7 @@ class SensorWidgets extends StatefulWidget {
 class _SensorWidgetsState extends State<SensorWidgets> {
   String name;
   late Sensor sensorObject =
-      Sensor(sensorName: "Temperature", sensorId: 10, data: 20);
+      Sensor(sensorName: "Temperature", sensorId: 10, data: "20");
   double size;
   // List<Sensor> data = [];
   late Future<List> data;
@@ -29,13 +29,10 @@ class _SensorWidgetsState extends State<SensorWidgets> {
 
   @override
   void initState() {
+    WidgetsFlutterBinding.ensureInitialized();
     super.initState();
-    late Future<Sensor> futureSensor;
-
-    data = fetchSensor();
     // Duration three = Duration(seconds: 3);
     // Future.delayed(three, () => null);
-    int a = 10;
   }
 
   @override
@@ -55,9 +52,10 @@ class _SensorWidgetsState extends State<SensorWidgets> {
         ],
       ),
       //khúc này bắt đầu vô code cái widget
-      child: FutureBuilder<List>(
-          future: data,
-          builder: (context, snapshot) {
+      //Dùng streambuilder thay vì future
+      child: StreamBuilder<List>(
+        stream: fetchSensor(),
+          builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
             Column child = Column();
             if (snapshot.hasData) {
               for (Sensor item in snapshot.data!) {
